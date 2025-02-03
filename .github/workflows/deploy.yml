@@ -1,0 +1,12 @@
+name: Deploy to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_site:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'test ${{github.event_name}}'
