@@ -9,4 +9,8 @@ jobs:
   build_site:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'test ${{github.event_name}}'
+      - run: echo '${{github.event_name}} started build'
+
+      - run: curl -fsSL https://deno.land/install.sh | sh
+
+      - run: deno -v
