@@ -77,7 +77,22 @@
 </script>
 
 <main>
-	<section class="section projects">
+	<section id="intro" class="section intro">
+		<h2 class="section__title">Introduction</h2>
+		<div class="section__connector"></div>
+		<p>
+			アメリカで20年以上過ごし、英語力を活かしてフリーランスの翻訳・通訳業務を行っています。TOEIC
+			990点を取得しており、ビジネスや国際的な環境での円滑なコミュニケーションに強みがあります。
+			加えて、Python、Excel、ウェブ開発（JavaScript、HTML、CSS、React、Svelte）を駆使し、業務の効率化やシステム開発をサポート。ExcelではVBAを用いて作業の自動化やデータ分析を行い、ReactやSvelteを活用してインタラクティブなウェブサイトを構築しています。
+			自己開発でAndroidアプリも制作しており、幅広い技術を組み合わせて、クライアントの多様なニーズに応えています。今後もこれらのスキルを活かし、更なる成長を目指し貢献していきたいと考えています。
+		</p>
+	</section>
+
+	<section class="section">
+		<h2 class="section__title">Excel</h2>
+	</section>
+
+	<section id="projects" class="section projects">
 		<h2 class="section__title">Projects</h2>
 		{#each projects as project}
 			<div class="project">
@@ -103,6 +118,9 @@
 		{/each}
 	</section>
 
+	<section class="section">
+		<h2 class="section__title">Skills</h2>
+	</section>
 	<section class="section contact">
 		<ul class="contact__list">
 			<li class="contact__list__item">
@@ -145,8 +163,25 @@
 		}
 	}
 
+	.intro {
+		h2 {
+			margin-bottom: 0;
+		}
+		.section__connector {
+			margin: 0 auto;
+			width: 8px;
+			background: linear-gradient(#f0f0f0, #e9e9e9);
+			height: 14px;
+			padding: 0;
+		}
+		p {
+			padding: 12px;
+			background-color: #e9e9e9;
+		}
+	}
 	.section {
-		margin: 0 auto;
+		max-width: 1025px;
+		width: 100%;
 		&__title {
 			background-color: #f0f0f0;
 			padding: 8px;
@@ -259,6 +294,7 @@
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		padding: 8px;
 		section {
 			padding: 16px;
