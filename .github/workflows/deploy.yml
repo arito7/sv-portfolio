@@ -13,4 +13,4 @@ jobs:
 
       - run: curl -fsSL https://deno.land/install.sh | sh
 
-      - run: deno -v
+      - run: deno install
