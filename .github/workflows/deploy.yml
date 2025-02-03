@@ -1,0 +1,16 @@
+name: Deploy to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_site:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo '${{github.event_name}} started build'
+
+      - run: curl -fsSL https://deno.land/install.sh | sh
+
+      - run: deno install
