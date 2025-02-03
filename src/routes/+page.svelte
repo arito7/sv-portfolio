@@ -76,13 +76,6 @@
 	const languages = { react: 'https://reactnative.dev', expo: 'https://expo.dev' };
 </script>
 
-<header>
-	<div class="navwrapper">
-		<h1>Yuji</h1>
-		<nav></nav>
-	</div>
-</header>
-
 <main>
 	<section class="section projects">
 		<h2 class="section__title">Projects</h2>
@@ -259,23 +252,6 @@
 				font-weight: bolder;
 				padding: 8px 0;
 			}
-		}
-	}
-
-	header {
-		display: flex;
-		justify-content: center;
-	}
-
-	.navwrapper {
-		padding: 16px 32px;
-		max-width: 1025px;
-		flex: 1 1 0;
-		display: flex;
-		h1 {
-			color: #525252;
-			font-weight: bolder;
-			font-size: 64px;
 		}
 	}
 
