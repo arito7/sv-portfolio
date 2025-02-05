@@ -75,6 +75,7 @@
 			languages: ['playstore', 'expo', 'react']
 		}
 	];
+
 	const languages = { react: 'https://reactnative.dev', expo: 'https://expo.dev' };
 	const nav_links = ['Intro', 'Tools', 'Projects', 'Contact'];
 
@@ -264,11 +265,15 @@
 		justify-content: center;
 
 		.navwrapper {
+			position: sticky;
+			top: 0;
+			z-index: 100;
 			padding: 16px 32px;
 			width: min(100%, 1025px);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			left: 0;
 
 			h1 {
 				color: #525252;
@@ -276,13 +281,6 @@
 				font-size: 64px;
 			}
 
-			&__languages {
-				align-items: center;
-				display: flex;
-				span {
-					margin: 0 4px;
-				}
-			}
 			.nav {
 				margin-left: auto;
 				width: 100%;
