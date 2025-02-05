@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
+
 	const projects = [
 		{
 			platform: 'android',
@@ -74,11 +76,101 @@
 		}
 	];
 	const languages = { react: 'https://reactnative.dev', expo: 'https://expo.dev' };
+	const nav_links = ['Intro', 'Tools', 'Projects', 'Contact'];
+
+	let visible = $state(true);
+	let mobileNavOpen = $state(false);
+
+	let ctaBtn: HTMLButtonElement;
+	let textArea: HTMLTextAreaElement;
+	let introEle: HTMLHeadingElement;
+	let toolEle: HTMLHeadingElement;
+	let projectsEle: HTMLHeadingElement;
+	let contactEle: HTMLHeadingElement;
+	let navEle: HTMLUListElement;
+
+	const onClickCta = () => {
+		contactEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	};
+
+	const onClickMenu = () => {
+		mobileNavOpen = true;
+		window.document.body.style.overflow = 'hidden';
+	};
+
+	const onCloseMenu = () => {
+		mobileNavOpen = false;
+		window.document.body.style.overflow = 'auto';
+	};
+
+	const navLinkClick = (link: String) => {
+		switch (link) {
+			case 'Intro':
+				introEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				break;
+			case 'Tools':
+				toolEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				break;
+			case 'Projects':
+				projectsEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				break;
+			case 'Contact':
+				contactEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				break;
+		}
+		if (mobileNavOpen) {
+			onCloseMenu();
+		}
+		console.log(link);
+	};
+
+	onMount(() => {
+		ctaBtn.onclick = onClickCta;
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					visible = false;
+				} else {
+					visible = true;
+				}
+			});
+		});
+		observer.observe(textArea);
+	});
 </script>
 
+<header>
+	<div class="navwrapper">
+		<nav class="nav">
+			<h1>Yuji</h1>
+			<ul bind:this={navEle} class={['nav__list', mobileNavOpen ? 'nav__list--open' : '']}>
+				<button class="nav__close-btn" onclick={onCloseMenu}>
+					<img src="./images/close.svg" width="32px" alt="" />
+				</button>
+				{#each nav_links as link}
+					<li class="nav__list__item">
+						<button class="nav__list__item__link" onclick={() => navLinkClick(link)}>{link}</button>
+					</li>
+				{/each}
+			</ul>
+			<button class="nav__menu-btn" onclick={onClickMenu}>
+				<img src="./images/menu.svg" width="32px" alt="" />
+			</button>
+		</nav>
+	</div>
+</header>
+
 <main>
+	<button
+		bind:this={ctaBtn}
+		class={['cta_button', visible ? '' : 'cta_button--hidden']}
+		style={mobileNavOpen ? 'display: none' : ''}
+	>
+		<span> お問い合わせ </span><img width="32px" src="./images/contact-mail.svg" alt="" />
+	</button>
+
 	<section id="intro" class="section intro">
-		<h2 class="section__title">Introduction</h2>
+		<h2 bind:this={introEle} class="section__title">Introduction</h2>
 		<div class="section__connector"></div>
 		<p>
 			アメリカで20年以上過ごし、英語力を活かしてフリーランスの翻訳・通訳業務を行っています。TOEIC
@@ -89,11 +181,11 @@
 	</section>
 
 	<section class="section">
-		<h2 class="section__title">Excel</h2>
+		<h2 bind:this={toolEle} class="section__title">ツール制作</h2>
 	</section>
 
 	<section id="projects" class="section projects">
-		<h2 class="section__title">Projects</h2>
+		<h2 bind:this={projectsEle} class="section__title">Projects</h2>
 		{#each projects as project}
 			<div class="project">
 				<div class="project__image">
@@ -118,19 +210,44 @@
 		{/each}
 	</section>
 
-	<section class="section">
-		<h2 class="section__title">Skills</h2>
+	<section id="contact" class="section contact">
+		<h2 bind:this={contactEle} class="section__title">Contact</h2>
+
+		<form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+			<input class="contact-form__input" type="text" name="name" required placeholder="Name" />
+			<input class="contact-form__input" type="email" name="email" required placeholder="Email" />
+			<input type="hidden" name="access_key" value="b7d864e2-0a79-4044-ab01-60c6c87ea2b0" />
+			<input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+			<textarea
+				bind:this={textArea}
+				class="contact-form__input textarea"
+				name="message"
+				required
+				placeholder="text"
+				aria-multiline="true"
+			></textarea>
+			<button type="submit">
+				<span> お問い合わせ </span>
+				<img src="./images/arrow.svg" width="28px" alt="" />
+			</button>
+		</form>
 	</section>
-	<section class="section contact">
-		<ul class="contact__list">
-			<li class="contact__list__item">
-				<a class="contact__list__item__link" href="https://github.com/arito7" target="_blank"
-					><img class="contact__list__item__icon" src="./images/github.svg" alt="" /></a
-				>
+
+	<section class="section links">
+		<ul class="links__list">
+			<li class="links__list__item">
+				<a class="links__list__item__link" href="https://github.com/arito7" target="_blank">
+					<img class="links__list__item__icon" src="./images/github.svg" alt="" />
+				</a>
 			</li>
-			<li class="contact__list__item">
-				<a class="contact__list__item__link" href="mailto:pon372591@gmail.com"
-					><img class="contact__list__item__icon" src="./images/email.png" alt="" /></a
+			<li class="links__list__item">
+				<a class="links__list__item__link" href="mailto:pon372591@gmail.com"
+					><img
+						width="24px"
+						class="links__list__item__icon"
+						src="./images/contact-mail.svg"
+						alt=""
+					/></a
 				>
 			</li>
 		</ul>
@@ -142,33 +259,172 @@
 </footer>
 
 <style lang="scss">
-	.contact {
-		&__list {
-			justify-content: center;
+	header {
+		display: flex;
+		justify-content: center;
+
+		.navwrapper {
+			padding: 16px 32px;
+			width: min(100%, 1025px);
 			display: flex;
 			align-items: center;
-			&__item {
-				margin-left: 16px;
-				transition: transform 0.1s ease-in-out;
-				&__icon {
-					width: 32px;
-				}
-				&__icon:hover {
-					filter: invert(100%);
+			justify-content: space-between;
+
+			h1 {
+				color: #525252;
+				font-weight: bolder;
+				font-size: 64px;
+			}
+
+			&__languages {
+				align-items: center;
+				display: flex;
+				span {
+					margin: 0 4px;
 				}
 			}
-			li:hover {
-				transform: scale(1.1);
+			.nav {
+				margin-left: auto;
+				width: 100%;
+				font-weight: 600;
+				color: #272833;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				&__close-btn {
+					display: none;
+				}
+
+				&__menu-btn {
+					display: none;
+					@media (max-width: 480px) {
+						display: block;
+					}
+				}
+
+				&__list {
+					display: flex;
+					justify-content: end;
+					transition: all 0.2s ease-in-out;
+
+					@media (max-width: 480px) {
+						position: absolute;
+						right: -150%;
+						height: 100vh;
+						width: 100vw;
+						z-index: 100;
+						top: 0;
+						display: flex;
+						position: fixed;
+						flex-direction: column;
+						padding: 32px 32px;
+						justify-content: start;
+						background-color: #fff;
+						&--open {
+							right: 0;
+							& > button {
+								display: block;
+								margin-inline-start: auto;
+								margin-bottom: 32px;
+							}
+						}
+					}
+
+					&__item {
+						@media (max-width: 480px) {
+							margin-bottom: 16px;
+						}
+						font-size: 24px;
+						margin-left: 16px;
+					}
+				}
 			}
 		}
 	}
 
+	.contact {
+		background-color: #fff;
+		.contact-form {
+			margin: 0 auto;
+			max-width: 50%;
+			background-color: #fff;
+			padding: 8px;
+			padding-bottom: 16px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			@media (max-width: 480px) {
+				max-width: 100%;
+			}
+			&__input:focus {
+				border-width: 3px;
+				margin-top: 0;
+				margin-bottom: 12px;
+				border-color: #69e6e6;
+			}
+			&__input {
+				margin-top: 6px;
+				margin-bottom: 12px;
+				border-radius: 2px;
+				background-color: #e9e9e9;
+				&::placeholder {
+					color: #535353;
+				}
+			}
+
+			textarea {
+				resize: none;
+				height: 200px;
+			}
+			button {
+				background-color: #69e6e6;
+				color: rgb(61, 61, 61);
+				padding: 8px 8px 8px 12px;
+				margin: 0 auto;
+				transition: all 0.1s ease-in-out;
+				display: flex;
+				justify-items: center;
+				align-items: center;
+				&:hover {
+				}
+			}
+		}
+	}
+
+	.links {
+		&__list {
+			justify-content: center;
+			display: flex;
+			align-items: center;
+			margin: 32px auto;
+			&__item {
+				width: 32px;
+				height: 32px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 16px;
+				background-color: #fff;
+				margin-left: 16px;
+				cursor: pointer;
+				transition: transform 0.1s ease-in-out;
+				&:hover {
+					background-color: #69e6e6;
+				}
+			}
+
+			li:hover {
+				transform: scale(1.03);
+			}
+		}
+	}
 	.intro {
 		h2 {
 			margin-bottom: 0;
 		}
 		.section__connector {
-			margin: 0 auto;
+			margin-right: auto;
 			width: 8px;
 			background: linear-gradient(#f0f0f0, #e9e9e9);
 			height: 14px;
@@ -179,6 +435,7 @@
 			background-color: #e9e9e9;
 		}
 	}
+
 	.section {
 		max-width: 1025px;
 		width: 100%;
@@ -295,10 +552,41 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 8px;
+		position: relative;
 		section {
 			padding: 16px;
 			max-width: 1000px;
+		}
+	}
+
+	.cta_button {
+		background: linear-gradient(270deg, #2f64b4, #307283);
+		color: whitesmoke;
+		padding: 16px;
+		margin: 32px;
+		right: 0;
+		bottom: 0;
+		position: fixed;
+		z-index: 1000;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		display: flex;
+		align-items: center;
+		transition: all 0.2s ease-in-out;
+
+		@media (max-width: 480px) {
+			margin: 16px 8px;
+		}
+		&--hidden {
+			right: -400px;
+		}
+
+		&:hover {
+			transform: scale(1.01);
+			background: linear-gradient(270deg, #307283, #2f64b4);
+		}
+		img {
+			filter: invert(1);
+			margin-left: 16px;
 		}
 	}
 
