@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { projects, languages } from '../data';
 	import { browser } from '$app/environment';
-	import ContactSection from '../ContactSection.svelte';
 	import Footer from '../Footer.svelte';
 
 	let visible = $state(true);
@@ -181,7 +180,23 @@
 
 	<section id="contact" class="section section--hidden contact">
 		<h2 bind:this={contactEle} class="section__title">Contact</h2>
-		<ContactSection />
+		<form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+			<input class="contact-form__input" type="text" name="name" required placeholder="Name" />
+			<input class="contact-form__input" type="email" name="email" required placeholder="Email" />
+			<input type="hidden" name="access_key" value="b7d864e2-0a79-4044-ab01-60c6c87ea2b0" />
+			<input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+			<textarea
+				class="contact-form__input textarea"
+				name="message"
+				required
+				placeholder="text"
+				aria-multiline="true"
+			></textarea>
+			<button type="submit">
+				<span> お問い合わせ </span>
+				<img src="/images/arrow.svg" width="28px" alt="" />
+			</button>
+		</form>
 	</section>
 </main>
 
