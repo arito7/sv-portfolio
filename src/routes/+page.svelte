@@ -118,7 +118,11 @@
 				{/each}
 			</ul>
 			<button class="nav__menu-btn" onclick={onClickMenu}>
-				<img src="./images/menu.svg" width="32px" alt="" />
+				<div class="hamburger">
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="bar"></div>
+				</div>
 			</button>
 		</nav>
 	</div>
@@ -196,6 +200,24 @@
 				<span> お問い合わせ </span>
 				<img src="/images/arrow.svg" width="28px" alt="" />
 			</button>
+			<label class="input input-bordered flex items-center gap-2">
+				Name
+				<input type="text" class="grow" placeholder="Daisy" />
+			</label>
+			<label class="input flex items-center gap-2">
+				Email
+				<input type="text" class="grow" placeholder="daisy@site.com" />
+			</label>
+			<label class="input input-bordered flex items-center gap-2">
+				<input type="text" class="grow" placeholder="Search" />
+				<kbd class="kbd kbd-sm">⌘</kbd>
+				<kbd class="kbd kbd-sm">K</kbd>
+			</label>
+			<label class="input input-bordered flex items-center gap-2">
+				<input type="text" class="grow" placeholder="Search" />
+				<span class="badge badge-info">Optional</span>
+			</label>
+			<button class="btn btn-primary">Primary</button>
 		</form>
 	</section>
 </main>
