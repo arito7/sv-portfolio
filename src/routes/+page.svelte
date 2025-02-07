@@ -162,17 +162,20 @@
 			>
 				Introduction
 			</h2>
-			<p>
-				アメリカで20年以上過ごし、英語力を活かしてフリーランスの翻訳・通訳業務を行っています。TOEIC
-				990点を取得しており、ビジネスや国際的な環境での円滑なコミュニケーションに強みがあります。
-			</p>
-			<p>
-				加えて、<b>Python、Excel、ウェブ開発（JavaScript、HTML、CSS、React、Svelte）</b
-				>を駆使し、業務の効率化やシステム開発をサポート。ExcelではVBAを用いて作業の自動化やデータ分析を行い、ReactやSvelteを活用してインタラクティブなウェブサイトを構築しています。
-			</p>
-			<p>
-				自己開発でAndroidアプリも制作しており、幅広い技術を組み合わせて、クライアントの多様なニーズに応えています。今後もこれらのスキルを活かし、更なる成長を目指し貢献していきたいと考えています。
-			</p>
+			<div class="flex flex-col gap-4 text-lg">
+				<p>
+					アメリカで20年以上過ごし、英語力を活かしてフリーランスの翻訳・通訳業務を行っています。TOEIC
+					990点を取得しており、ビジネスや国際的な環境での円滑なコミュニケーションに強みがあります。
+				</p>
+				<p>
+					加えて、<span class="font-semibold text-secondary"
+						>Python、Excel、ウェブ開発（JavaScript、HTML、CSS、React、Svelte）</span
+					>を駆使し、業務の効率化やシステム開発をサポート。ExcelではVBAを用いて作業の自動化やデータ分析を行い、ReactやSvelteを活用してインタラクティブなウェブサイトを構築しています。
+				</p>
+				<p>
+					自己開発でAndroidアプリも制作しており、幅広い技術を組み合わせて、クライアントの多様なニーズに応えています。今後もこれらのスキルを活かし、更なる成長を目指し貢献していきたいと考えています。
+				</p>
+			</div>
 		</div>
 	</section>
 
@@ -260,7 +263,7 @@
 					aria-multiline="true"
 				></textarea>
 				<button type="submit" class="btn btn-primary self-end justify-self-end">
-					<span> お問い合わせ </span>
+					<span class="text-slate-900"> お問い合わせ </span>
 					<img src="/images/arrow.svg" width="28px" alt="" />
 				</button>
 			</form>
