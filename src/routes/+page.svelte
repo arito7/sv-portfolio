@@ -245,11 +245,9 @@
 			<h2 class="hide hide--underline text-4xl font-semibold text-primary before:bg-primary">
 				Projects
 			</h2>
-			<div
-				class="hide flex flex-col items-center justify-center gap-8 lg:min-h-svh lg:flex-row lg:items-start"
-			>
+			<div class="hide flex flex-col items-start justify-center gap-8 md:flex-row lg:items-start">
 				{#each projects as project}
-					<div class="card card-compact bg-slate-700 shadow-xl lg:mx-0 lg:w-64">
+					<div class="card card-compact mx-auto w-64 bg-slate-700 shadow-xl md:mx-0">
 						<figure>
 							{#if project.name == 'SDSGC App'}
 								<enhanced:img
@@ -301,16 +299,18 @@
 	<section
 		bind:this={contactEle}
 		id="contact"
-		class="flex min-h-screen w-full items-center justify-center bg-secondary"
+		class="flex min-h-screen w-full flex-col items-center justify-center bg-secondary"
 	>
-		<div class="hide hide--slide-in mx-auto flex w-full max-w-5xl flex-col items-center gap-9 p-9">
+		<div
+			class="hide hide--slide-in mx-auto flex w-full max-w-5xl grow flex-col items-center justify-center gap-9 p-9"
+		>
 			<h2
-				class="hide hide--underline self-start text-4xl font-semibold text-secondary-content before:bg-slate-800"
+				class="hide hide--underline text-4xl font-semibold text-secondary-content before:bg-slate-800"
 			>
 				Contact
 			</h2>
 			<form
-				class="flex w-full grow flex-col justify-between gap-4 lg:w-1/2"
+				class="flex w-full grow flex-col items-center justify-center gap-4 lg:w-1/2"
 				action="https://api.web3forms.com/submit"
 				method="POST"
 			>
