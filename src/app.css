@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'Cubano';
-    src: url('./Cubano.ttf')
+    src: url('/Cubano.ttf')
 }
 
 :root {
