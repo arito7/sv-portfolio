@@ -155,8 +155,8 @@
 		<span> お問い合わせ </span><img class="w-6" src="./images/contact-mail.svg" alt="" />
 	</button>
 
-	<section bind:this={introEle} id="intro" class="w-full">
-		<div class="hide mx-auto flex max-w-5xl flex-col justify-center p-9">
+	<section bind:this={introEle} id="intro" class="min-h-screen w-full lg:min-h-fit">
+		<div class="hide mx-auto flex max-w-5xl flex-col items-center justify-center p-9">
 			<h2
 				class="relative mb-8 inline-block w-auto text-4xl font-semibold text-primary before:absolute before:-bottom-2 before:h-1 before:w-0 before:bg-primary before:transition-all before:duration-500 before:content-[''] before:hover:w-full"
 			>
