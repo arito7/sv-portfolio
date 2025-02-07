@@ -91,8 +91,15 @@
 		const hidden = document.querySelectorAll('.hide');
 		const ob = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
+				console.log(entry.target);
 				if (entry.isIntersecting) {
-					entry.target.classList.add('show');
+					switch (entry.target.tagName.toLowerCase()) {
+						case 'h2':
+							entry.target.classList.add('show--underline');
+							break;
+						default:
+							entry.target.classList.add('show--slide-in');
+					}
 				}
 			});
 		});
@@ -101,7 +108,7 @@
 </script>
 
 <svelte:window bind:scrollY />
-<div class="show hide hidden"></div>
+<div class="hide--underline hide--slide-in show hide show--underline show--slide-in hidden"></div>
 <header bind:this={header} class="header header--show header--top w-full text-slate-200">
 	<div class="mx-auto flex h-32 max-w-5xl items-center justify-center text-primary-content">
 		<nav class="flex w-full items-center justify-between p-6">
@@ -155,14 +162,20 @@
 		<span> お問い合わせ </span><img class="w-6" src="./images/contact-mail.svg" alt="" />
 	</button>
 
-	<section bind:this={introEle} id="intro" class="min-h-screen w-full lg:min-h-fit">
-		<div class="hide mx-auto flex max-w-5xl flex-col items-center justify-center p-9">
+	<section
+		bind:this={introEle}
+		id="intro"
+		class="flex min-h-screen w-full flex-col items-center justify-center"
+	>
+		<div
+			class="hide hide--slide-in mx-auto flex max-w-5xl grow flex-col items-center justify-center p-9"
+		>
 			<h2
-				class="relative mb-8 inline-block w-auto text-4xl font-semibold text-primary before:absolute before:-bottom-2 before:h-1 before:w-0 before:bg-primary before:transition-all before:duration-500 before:content-[''] before:hover:w-full"
+				class="hide hide--underline relative mb-8 inline-block w-auto text-4xl font-semibold text-primary before:bg-primary"
 			>
 				Introduction
 			</h2>
-			<div class="flex flex-col gap-4 text-lg">
+			<div class="flex grow flex-col justify-center gap-4 text-lg">
 				<p>
 					アメリカで20年以上過ごし、英語力を活かしてフリーランスの翻訳・通訳業務を行っています。TOEIC
 					990点を取得しており、ビジネスや国際的な環境での円滑なコミュニケーションに強みがあります。
@@ -176,20 +189,62 @@
 					自己開発でAndroidアプリも制作しており、幅広い技術を組み合わせて、クライアントの多様なニーズに応えています。今後もこれらのスキルを活かし、更なる成長を目指し貢献していきたいと考えています。
 				</p>
 			</div>
+			<div class="flex w-full justify-center">
+				<button
+					aria-label="Scroll to Tools"
+					class="relative block h-12 w-12"
+					onclick={() => {
+						toolEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}}
+				>
+					<div class="absolute right-0 h-2 w-8 -rotate-45 rounded bg-slate-300"></div>
+					<div class="absolute left-0 h-2 w-8 rotate-45 rounded bg-slate-300"></div>
+				</button>
+			</div>
 		</div>
 	</section>
 
-	<section bind:this={toolEle} class="section section--hidden tools">
-		<div class="mx-auto max-w-5xl p-9">
-			<h2 class="text-4xl font-semibold">
-				Tool <span class="text-3xl">ツール制作</span>
-			</h2>
+	<section bind:this={toolEle} class="tools flex min-h-screen flex-col items-center justify-center">
+		<div class="hide hide--slide-in mx-auto flex max-w-5xl grow flex-col gap-8 p-9">
+			<div class="flex flex-col">
+				<h2
+					class="hide hide--underline inline-block w-fit self-end text-3xl font-semibold text-secondary before:bg-secondary md:text-4xl"
+				>
+					Tool <span class="text-3xl">ツール制作</span>
+				</h2>
+				<ul class="mt-4 flex flex-col items-end justify-end text-xs text-slate-400">
+					<li>Pythonを用いたカスタムツール開発</li>
+					<li>Excel業務の自動化・効率化</li>
+					<li>データ分析・処理の最適化</li>
+					<li>WebスクレイピングやAPI連携による情報収集</li>
+				</ul>
+			</div>
+			<div class="flex grow flex-col items-center justify-center gap-8">
+				<p class="text-lg">
+					「画像PDF文書をテキスト化する、編集可能なPDF（テキストPDF）として変換するツールが欲しい」
+				</p>
+				<p class="text-lg">「エクセルの入力項目を減らしたい、効率化したい」</p>
+			</div>
+			<div class="flex w-full justify-center">
+				<button
+					aria-label="Scroll to Projects"
+					class="relative block h-12 w-12"
+					onclick={() => {
+						projectsEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}}
+				>
+					<div class="absolute right-0 h-2 w-8 -rotate-45 rounded bg-slate-300"></div>
+					<div class="absolute left-0 h-2 w-8 rotate-45 rounded bg-slate-300"></div>
+				</button>
+			</div>
 		</div>
 	</section>
 
 	<section bind:this={projectsEle} id="projects" class="min-h-screen w-full bg-slate-900">
-		<div class="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-9">
-			<h2 class="text-4xl font-semibold text-primary">Projects</h2>
+		<div class="hide hide--slide-in mx-auto flex max-w-5xl flex-col gap-8 px-4 py-9">
+			<h2 class="hide hide--underline text-4xl font-semibold text-primary before:bg-primary">
+				Projects
+			</h2>
 			<div
 				class="hide flex flex-col items-center justify-center gap-8 lg:min-h-svh lg:flex-row lg:items-start"
 			>
@@ -228,12 +283,32 @@
 					</div>
 				{/each}
 			</div>
+			<div class="flex w-full justify-center">
+				<button
+					aria-label="Scroll To Contacts"
+					class="relative block h-12 w-12"
+					onclick={() => {
+						contactEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}}
+				>
+					<div class="absolute right-0 h-2 w-8 -rotate-45 rounded bg-slate-300"></div>
+					<div class="absolute left-0 h-2 w-8 rotate-45 rounded bg-slate-300"></div>
+				</button>
+			</div>
 		</div>
 	</section>
 
-	<section bind:this={contactEle} id="contact" class="hide h-screen w-full bg-secondary">
-		<div class="mx-auto flex max-w-5xl flex-col items-center gap-9 p-9">
-			<h2 class="self-start text-4xl font-semibold text-secondary-content">Contact</h2>
+	<section
+		bind:this={contactEle}
+		id="contact"
+		class="flex min-h-screen w-full items-center justify-center bg-secondary"
+	>
+		<div class="hide hide--slide-in mx-auto flex w-full max-w-5xl flex-col items-center gap-9 p-9">
+			<h2
+				class="hide hide--underline self-start text-4xl font-semibold text-secondary-content before:bg-slate-800"
+			>
+				Contact
+			</h2>
 			<form
 				class="flex w-full grow flex-col justify-between gap-4 lg:w-1/2"
 				action="https://api.web3forms.com/submit"
@@ -349,15 +424,39 @@
 
 <style lang="scss">
 	.hide {
-		transform: translateX(-100%);
-		opacity: 0;
-		filter: blur(5px);
-		transition: all 0.8s;
+		&--slide-in {
+			transform: translateX(-100%);
+			opacity: 0;
+			filter: blur(5px);
+			transition: all 0.8s;
+		}
+		&--underline {
+			position: relative;
+			width: fit-content;
+			&::before {
+				position: absolute;
+				bottom: -8px;
+				left: 0;
+				opacity: 0;
+				transition: all 0.3s;
+				border-radius: 4px;
+				width: 0%;
+				height: 4px;
+				content: '';
+			}
+		}
 	}
 
 	.show {
-		transform: translateX(0);
-		opacity: 1;
-		filter: blur(0);
+		&--slide-in {
+			transform: translateX(0);
+			opacity: 1;
+			filter: blur(0);
+		}
+		&--underline::before {
+			opacity: 1 !important;
+			transition-delay: 500ms;
+			width: 100% !important;
+		}
 	}
 </style>
