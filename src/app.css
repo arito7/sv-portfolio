@@ -5,9 +5,16 @@
 
 @font-face {
     font-family: 'Cubano';
-    src: url('/Cubano.ttf')
+    src: url('/Cubano.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'rounded';
+    src: url('/RoundedMedium.ttf');
+    font-display: swap;
 }
 
 :root {
-    font-family: 'Cubano', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cubano', 'rounded', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
