@@ -102,24 +102,31 @@
 
 <svelte:window bind:scrollY />
 <div class="show hide hidden"></div>
-<header bind:this={header} class="header header--show header--top w-full bg-primary">
+<header bind:this={header} class="header header--show header--top w-full text-slate-200">
 	<div class="mx-auto flex h-32 max-w-5xl items-center justify-center text-primary-content">
 		<nav class="flex w-full items-center justify-between p-6">
-			<h1 class="inline-block text-3xl font-bold">Yuji</h1>
+			<h1 class="inline-block text-3xl font-bold text-slate-200">Yuji</h1>
 			<ul
 				bind:this={navEle}
 				class={[
 					mobileNavOpen ? '!translate-x-0 !opacity-100 !blur-0' : '',
-					'fixed left-0 top-0 z-30 flex h-screen w-screen translate-x-full flex-col items-start justify-start gap-8 bg-secondary p-8 opacity-0 blur-md transition-all duration-300 lg:static lg:flex lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:bg-transparent lg:p-0 lg:opacity-100 lg:blur-0'
+					'fixed left-0 top-0 z-30 flex h-screen w-screen translate-x-full flex-col items-start justify-start gap-8 bg-secondary p-8 opacity-0 blur-md transition-all duration-300 lg:static lg:flex lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:bg-transparent lg:p-0 lg:text-slate-300 lg:opacity-100 lg:blur-0'
 				]}
 			>
-				<button class={['self-end', mobileNavOpen ? 'w-auto' : 'w-0']} onclick={onCloseMenu}>
-					<img src="./images/close.svg" width="32px" alt="" />
+				<button
+					aria-label="Close"
+					class={['self-end', mobileNavOpen ? 'w-auto' : 'hidden']}
+					onclick={onCloseMenu}
+				>
+					<div class="relative mt-6 w-8">
+						<div class="absolute h-1 w-7 rotate-45 rounded-md bg-slate-900"></div>
+						<div class="h-1 w-7 -rotate-45 rounded-md bg-slate-900"></div>
+					</div>
 				</button>
 				{#each links as link}
 					<li class="relative">
 						<button
-							class="duration-400 font-semibold transition-all before:absolute before:bottom-0 before:left-0 before:block before:h-8 before:w-full before:bg-secondary-content before:content-none"
+							class="font-semibold before:absolute before:-bottom-1 before:left-0 before:block before:h-1 before:w-0 before:bg-slate-300 before:transition-all before:duration-300 before:content-[''] hover:text-secondary before:hover:w-full before:hover:bg-secondary"
 							onclick={() => navLinkClick(link)}>{link}</button
 						>
 					</li>
@@ -127,9 +134,9 @@
 			</ul>
 			<button class="lg:hidden" aria-label="Menu" onclick={onClickMenu}>
 				<div class="h-6 w-6">
-					<div class="mb-1 h-1 rounded bg-primary-content"></div>
-					<div class="mb-1 h-1 rounded bg-primary-content"></div>
-					<div class="mb-1 h-1 rounded bg-primary-content"></div>
+					<div class="mb-1 h-1 rounded bg-slate-300"></div>
+					<div class="mb-1 h-1 rounded bg-slate-300"></div>
+					<div class="mb-1 h-1 rounded bg-slate-300"></div>
 				</div>
 			</button>
 		</nav>
@@ -148,8 +155,8 @@
 		<span> お問い合わせ </span><img class="w-6" src="./images/contact-mail.svg" alt="" />
 	</button>
 
-	<section bind:this={introEle} id="intro" class="hide w-full">
-		<div class="mx-auto flex max-w-5xl flex-col justify-center p-9">
+	<section bind:this={introEle} id="intro" class="w-full">
+		<div class="hide mx-auto flex max-w-5xl flex-col justify-center p-9">
 			<h2
 				class="relative mb-8 inline-block w-auto text-4xl font-semibold text-primary before:absolute before:-bottom-2 before:h-1 before:w-0 before:bg-primary before:transition-all before:duration-500 before:content-[''] before:hover:w-full"
 			>
