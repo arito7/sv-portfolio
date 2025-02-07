@@ -101,7 +101,7 @@
 </script>
 
 <svelte:window bind:scrollY />
-<div class="show hidden"></div>
+<div class="show hide hidden"></div>
 <header bind:this={header} class="header header--show header--top w-full bg-primary">
 	<div class="mx-auto flex h-32 max-w-5xl items-center justify-center text-primary-content">
 		<nav class="flex w-full items-center justify-between p-6">
@@ -109,11 +109,11 @@
 			<ul
 				bind:this={navEle}
 				class={[
-					'fixed left-0 top-0 z-30 flex h-screen w-screen translate-x-full flex-col items-start justify-start gap-8 bg-secondary p-8 opacity-0 blur-md transition-all duration-300 lg:static lg:flex lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:bg-transparent lg:p-0 lg:opacity-100 lg:blur-0',
-					mobileNavOpen ? 'fixed translate-x-0 opacity-100 blur-0' : ''
+					mobileNavOpen ? '!translate-x-0 !opacity-100 !blur-0' : '',
+					'fixed left-0 top-0 z-30 flex h-screen w-screen translate-x-full flex-col items-start justify-start gap-8 bg-secondary p-8 opacity-0 blur-md transition-all duration-300 lg:static lg:flex lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:bg-transparent lg:p-0 lg:opacity-100 lg:blur-0'
 				]}
 			>
-				<button class={['self-end', mobileNavOpen ? 'block' : 'hidden']} onclick={onCloseMenu}>
+				<button class={['self-end', mobileNavOpen ? 'w-auto' : 'w-0']} onclick={onCloseMenu}>
 					<img src="./images/close.svg" width="32px" alt="" />
 				</button>
 				{#each links as link}
@@ -148,7 +148,7 @@
 		<span> お問い合わせ </span><img class="w-6" src="./images/contact-mail.svg" alt="" />
 	</button>
 
-	<section bind:this={introEle} id="intro" class="w-full">
+	<section bind:this={introEle} id="intro" class="hide w-full">
 		<div class="mx-auto flex max-w-5xl flex-col justify-center p-9">
 			<h2
 				class="relative mb-8 inline-block w-auto text-4xl font-semibold text-primary before:absolute before:-bottom-2 before:h-1 before:w-0 before:bg-primary before:transition-all before:duration-500 before:content-[''] before:hover:w-full"
@@ -181,7 +181,7 @@
 		<div class="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-9">
 			<h2 class="text-4xl font-semibold text-primary">Projects</h2>
 			<div
-				class="flex flex-col items-center justify-center gap-8 lg:min-h-svh lg:flex-row lg:items-start"
+				class="hide flex flex-col items-center justify-center gap-8 lg:min-h-svh lg:flex-row lg:items-start"
 			>
 				{#each projects as project}
 					<div class="card card-compact bg-slate-700 shadow-xl lg:mx-0 lg:w-64">
@@ -221,7 +221,7 @@
 		</div>
 	</section>
 
-	<section bind:this={contactEle} id="contact" class="h-screen w-full bg-secondary">
+	<section bind:this={contactEle} id="contact" class="hide h-screen w-full bg-secondary">
 		<div class="mx-auto flex max-w-5xl flex-col items-center gap-9 p-9">
 			<h2 class="self-start text-4xl font-semibold text-secondary-content">Contact</h2>
 			<form
