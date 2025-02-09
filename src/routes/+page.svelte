@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { projects, languages } from '../data';
 	import { browser } from '$app/environment';
 
 	let ctaBtnVisible = $state(true);
@@ -12,7 +11,7 @@
 	let contactEle: HTMLElement;
 	let navEle: HTMLUListElement;
 
-	const links = ['Intro', 'Tools', 'Projects', 'Contact'];
+	const links = ['Intro', 'Tools', 'Projects', 'Contact️'];
 
 	const onClickCta = () => {
 		contactEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -112,7 +111,7 @@
 <header bind:this={header} class="header header--show header--top w-full text-slate-200">
 	<div class="mx-auto flex h-32 max-w-5xl items-center justify-center text-primary-content">
 		<nav class="flex w-full items-center justify-between p-6">
-			<h1 class="inline-block text-3xl font-bold text-slate-200">Yuji</h1>
+			<h1 class="inline-block text-3xl font-bold text-primary">Yuji️🗾</h1>
 			<ul
 				bind:this={navEle}
 				class={[
@@ -167,28 +166,30 @@
 		id="intro"
 		class="flex min-h-screen w-full flex-col items-center justify-center"
 	>
+		<div class="hero min-h-screen bg-base-200">
+			<div class="hero-content w-screen text-center">
+				<div class="flex w-full flex-col items-center justify-center gap-12">
+					<h1 class="mt-8 text-5xl font-bold text-secondary">Hello there 👋</h1>
+					<div class="mockup-code w-[80%] bg-slate-700 px-8 pb-12">
+						<p class="text-slate-300">
+							アメリカで20年以上過ごし、英語力を活かしてフリーランス
+							の翻訳・通訳業務を行っています。 TOEIC990点を取得しており、
+							ビジネスや国際的な環境での円滑なコミュニケーションに強みがあります。
+							加えて、Python、Excel、ウェブ開発（JavaScript、HTML、CSS、React、Svelte）
+							を駆使し、業務の効率化やシステム開発をサポート。ExcelではVBAを用いて作業の自動化やデータ分析を行い、
+							ReactやSvelteを活用してインタラクティブなウェブサイトを構築しています。
+							自己開発でAndroidアプリも制作しており、
+							幅広い技術を組み合わせて、クライアントの多様なニーズに応えています。今後もこれらのスキルを活かし、
+							更なる成長を目指し貢献していきたいと考えています。
+						</p>
+					</div>
+					<button onclick={onClickCta} class="btn btn-primary">Get Started</button>
+				</div>
+			</div>
+		</div>
 		<div
 			class="hide hide--slide-in mx-auto flex max-w-5xl grow flex-col items-center justify-center p-9"
 		>
-			<h2
-				class="hide hide--underline relative mb-8 inline-block w-auto text-4xl font-semibold text-primary before:bg-primary"
-			>
-				Introduction
-			</h2>
-			<div class="flex grow flex-col justify-center gap-4 text-lg">
-				<p>
-					アメリカで20年以上過ごし、英語力を活かしてフリーランスの翻訳・通訳業務を行っています。TOEIC
-					990点を取得しており、ビジネスや国際的な環境での円滑なコミュニケーションに強みがあります。
-				</p>
-				<p>
-					加えて、<span class="font-semibold text-secondary"
-						>Python、Excel、ウェブ開発（JavaScript、HTML、CSS、React、Svelte）</span
-					>を駆使し、業務の効率化やシステム開発をサポート。ExcelではVBAを用いて作業の自動化やデータ分析を行い、ReactやSvelteを活用してインタラクティブなウェブサイトを構築しています。
-				</p>
-				<p>
-					自己開発でAndroidアプリも制作しており、幅広い技術を組み合わせて、クライアントの多様なニーズに応えています。今後もこれらのスキルを活かし、更なる成長を目指し貢献していきたいと考えています。
-				</p>
-			</div>
 			<div class="flex w-full justify-center">
 				<button
 					aria-label="Scroll to Tools"
@@ -204,26 +205,35 @@
 		</div>
 	</section>
 
+	<!-- tool -->
 	<section bind:this={toolEle} class="tools flex min-h-screen flex-col items-center justify-center">
 		<div class="hide hide--slide-in mx-auto flex max-w-5xl grow flex-col gap-8 p-9">
-			<div class="flex flex-col">
-				<h2
-					class="hide hide--underline inline-block w-fit self-end text-3xl font-semibold text-secondary before:bg-secondary md:text-4xl"
-				>
-					Tool <span class="text-3xl">ツール制作</span>
-				</h2>
-				<ul class="mt-4 flex flex-col items-end justify-end text-xs text-slate-400">
-					<li>Pythonを用いたカスタムツール開発</li>
-					<li>Excel業務の自動化・効率化</li>
-					<li>データ分析・処理の最適化</li>
-					<li>WebスクレイピングやAPI連携による情報収集</li>
-				</ul>
+			<div class="card self-end bg-base-300">
+				<div class="card-body">
+					<h2
+						class="hide hide--underline inline-block w-fit self-end text-3xl font-semibold text-secondary before:bg-secondary md:text-4xl"
+					>
+						Tool 🔧<span class="block text-3xl">ツール制作</span>
+					</h2>
+					<ul class="mt-4 flex flex-col items-end justify-end text-xs text-slate-400">
+						<li>Pythonを用いたカスタムツール開発</li>
+						<li>Excel業務の自動化・効率化</li>
+						<li>データ分析・処理の最適化</li>
+						<li>WebスクレイピングやAPI連携による情報収集</li>
+					</ul>
+				</div>
 			</div>
 			<div class="flex grow flex-col items-center justify-center gap-8">
-				<p class="text-lg">
-					「画像PDF文書をテキスト化する、編集可能なPDF（テキストPDF）として変換するツールが欲しい」
-				</p>
-				<p class="text-lg">「エクセルの入力項目を減らしたい、効率化したい」</p>
+				<div class="chat chat-start">
+					<div class="chat-bubble chat-bubble-accent">
+						「画像PDF文書をテキスト化する、編集可能なPDF（テキストPDF）として変換するツールが欲しい」
+					</div>
+				</div>
+				<div class="chat chat-end">
+					<div class="chat-bubble chat-bubble-success">
+						エクセルの入力項目を減らしたい、効率化したい」
+					</div>
+				</div>
 			</div>
 			<div class="flex w-full justify-center">
 				<button
@@ -240,46 +250,222 @@
 		</div>
 	</section>
 
-	<section bind:this={projectsEle} id="projects" class="min-h-screen w-full bg-slate-900">
-		<div class="hide hide--slide-in mx-auto flex max-w-5xl flex-col gap-8 px-4 py-9">
-			<h2 class="hide hide--underline text-4xl font-semibold text-primary before:bg-primary">
+	<section bind:this={projectsEle} id="projects" class="min-h-screen w-full">
+		<div class="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-9">
+			<h2 class="hide hide--underline text-4xl font-semibold text-secondary before:bg-primary">
 				Projects
 			</h2>
-			<div class="hide flex flex-col items-start justify-center gap-8 md:flex-row lg:items-start">
-				{#each projects as project}
-					<div class="card card-compact mx-auto w-64 bg-slate-700 shadow-xl md:mx-0">
-						<figure>
-							{#if project.name == 'SDSGC App'}
-								<enhanced:img
-									class="h-64 object-cover"
-									src="/static/images/sdsgc.png"
-									alt={project.name}
-								/>
-							{:else}
-								<enhanced:img
-									class="h-64 object-cover"
-									src="/static/images/osrs.png"
-									alt={project.name}
-								/>
-							{/if}
-						</figure>
-						<div class="card-body">
-							<h2 class="card-title text-secondary">{project.name}</h2>
-							{@html project.description}
-							<div class="card-actions justify-end">
-								<ul class="flex gap-2">
-									{#each project.languages as language}
-										<li class="project__languages__language">
-											<a href={languages[language]} target="_blank"
-												><img class="w-8" src={`./images/${language}.svg`} alt={language} /></a
-											>
-										</li>
-									{/each}
-								</ul>
+			<!-- project1 -->
+			<div class="card card-side bg-base-200">
+				<div class="card-body gap-8">
+					<div class="flex flex-col gap-8 md:flex-row">
+						<div class="avatar">
+							<div class="mask mask-hexagon w-60">
+								<enhanced:img class="object-cover" src="/static/images/sdsgc.png" alt="" />
+							</div>
+						</div>
+						<div class="flex flex-col gap-4">
+							<h3 class="mx-444 card-title text-3xl text-primary">SDSGC App</h3>
+							<p style="margin-bottom: 8px">
+								An app for managing game characters for the mobile game
+								<b><i>Seven Deadly Sins: Grand Cross</i></b>.
+							</p>
+							<h3>✨<u><b>Features</b></u>✨</h3>
+							<ul style="margin-bottom: 8px;">
+								<li>♦️ Voting system for users to rank certain characters.</li>
+								<li>♦️ Runtime updates for new characters.</li>
+								<li>️♦️️ User data backups to Firestore</li>
+								<li>♦️ Data stored in Google Spreadsheets</li>
+							</ul>
+							<div class="stats shadow">
+								<div class="stat bg-base-300">
+									<div class="stat-title">Downloads</div>
+									<div class="stat-value text-secondary">50k</div>
+									<div class="stat-desc">MAU: ~2k</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				{/each}
+					<table class="table table-zebra bg-base-100">
+						<tbody>
+							<tr>
+								<th>Platform</th>
+								<td
+									>Android<img class=" inline-block h-8 w-8" src="/images/android.svg" alt="" /></td
+								>
+							</tr>
+							<tr>
+								<th>Language</th>
+								<td
+									>React Native <img
+										src="/images/react.svg"
+										class="inline-block h-8 w-8"
+										alt=""
+									/></td
+								>
+							</tr>
+							<tr>
+								<th>Framework</th>
+								<td>Expo <img src="/images/expo.svg" class="inline-block h-8 w-8" alt="" /></td>
+							</tr>
+							<tr>
+								<th>Backend</th>
+								<td
+									>Supabase
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										x="0px"
+										class="inline-block h-8 w-8"
+										y="0px"
+										width="100"
+										height="100"
+										viewBox="0 0 48 48"
+									>
+										<g id="Ð¡Ð»Ð¾Ð¹_1"
+											><linearGradient
+												id="SVGID_1__sH0rW2TvYdr9_gr1"
+												x1="14.073"
+												x2="14.073"
+												y1="8.468"
+												y2="36.033"
+												gradientUnits="userSpaceOnUse"
+												><stop offset="0" stop-color="#7dffce"></stop><stop
+													offset="1"
+													stop-color="#50c08d"
+												></stop></linearGradient
+											><path
+												fill="url(#SVGID_1__sH0rW2TvYdr9_gr1)"
+												d="M24.2,30V6.3c0-1.8-2.3-2.6-3.4-1.2L4.5,25.9c-1.3,1.7-0.1,4.1,2,4.1H24.2z"
+											></path><linearGradient
+												id="SVGID_00000140728474547789280440000018204366184369975479__sH0rW2TvYdr9_gr2"
+												x1="34.249"
+												x2="34.249"
+												y1="48.404"
+												y2="19.425"
+												gradientUnits="userSpaceOnUse"
+												><stop offset="0" stop-color="#7dffce"></stop><stop
+													offset="1"
+													stop-color="#50c08d"
+												></stop></linearGradient
+											><path
+												fill="url(#SVGID_00000140728474547789280440000018204366184369975479__sH0rW2TvYdr9_gr2)"
+												d="M24,18.4v23.7c0,1.8,2.4,2.6,3.5,1.2 l16.4-20.7c1.3-1.7,0.1-4.1-2.1-4.1H24z"
+											></path></g
+										>
+									</svg></td
+								>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="card card-side bg-base-200">
+				<div class="card-body gap-8">
+					<div class="flex flex-col gap-8 md:flex-row">
+						<div class="avatar">
+							<div class="mask mask-hexagon w-60">
+								<enhanced:img class="object-cover" src="/static/images/osrs.png" alt="" />
+							</div>
+						</div>
+						<div class="flex flex-col gap-4">
+							<h3 class="mx-444 card-title text-2xl text-primary">OSRS App</h3>
+							<p style="margin-bottom: 8px">
+								An app to track real time prices for an in-game marketplace for the game
+								<b><i>Old School Runescape</i></b>.
+							</p>
+							<h3>✨<u><b>Features</b></u>✨</h3>
+							<ul style="margin-bottom: 8px;">
+								<li>♦️ Hits the publicly available game API for realtime data.</li>
+								<li>♦️ Graphs the data to selected time intervals.</li>
+							</ul>
+							<div class="stats shadow">
+								<div class="stat bg-base-300">
+									<div class="stat-title">Downloads</div>
+									<div class="stat-value text-secondary">10k</div>
+									<div class="stat-desc">MAU: ~1k</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="">
+						<table class="table table-zebra bg-base-100">
+							<tbody>
+								<tr>
+									<th>Platform</th>
+									<td
+										>Android<img
+											class=" inline-block h-8 w-8"
+											src="/images/android.svg"
+											alt=""
+										/></td
+									>
+								</tr>
+								<tr>
+									<th>Language</th>
+									<td
+										>React Native <img
+											src="/images/react.svg"
+											class="inline-block h-8 w-8"
+											alt=""
+										/></td
+									>
+								</tr>
+								<tr>
+									<th>Framework</th>
+									<td>Expo <img src="/images/expo.svg" class="inline-block h-8 w-8" alt="" /></td>
+								</tr>
+								<tr>
+									<th>Backend</th>
+									<td
+										>Supabase
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											x="0px"
+											class="inline-block h-8 w-8"
+											y="0px"
+											width="100"
+											height="100"
+											viewBox="0 0 48 48"
+										>
+											<g id="Ð¡Ð»Ð¾Ð¹_1"
+												><linearGradient
+													id="SVGID_1__sH0rW2TvYdr9_gr1"
+													x1="14.073"
+													x2="14.073"
+													y1="8.468"
+													y2="36.033"
+													gradientUnits="userSpaceOnUse"
+													><stop offset="0" stop-color="#7dffce"></stop><stop
+														offset="1"
+														stop-color="#50c08d"
+													></stop></linearGradient
+												><path
+													fill="url(#SVGID_1__sH0rW2TvYdr9_gr1)"
+													d="M24.2,30V6.3c0-1.8-2.3-2.6-3.4-1.2L4.5,25.9c-1.3,1.7-0.1,4.1,2,4.1H24.2z"
+												></path><linearGradient
+													id="SVGID_00000140728474547789280440000018204366184369975479__sH0rW2TvYdr9_gr2"
+													x1="34.249"
+													x2="34.249"
+													y1="48.404"
+													y2="19.425"
+													gradientUnits="userSpaceOnUse"
+													><stop offset="0" stop-color="#7dffce"></stop><stop
+														offset="1"
+														stop-color="#50c08d"
+													></stop></linearGradient
+												><path
+													fill="url(#SVGID_00000140728474547789280440000018204366184369975479__sH0rW2TvYdr9_gr2)"
+													d="M24,18.4v23.7c0,1.8,2.4,2.6,3.5,1.2 l16.4-20.7c1.3-1.7,0.1-4.1-2.1-4.1H24z"
+												></path></g
+											>
+										</svg></td
+									>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 			<div class="flex w-full justify-center">
 				<button
@@ -307,7 +493,7 @@
 			<h2
 				class="hide hide--underline text-4xl font-semibold text-secondary-content before:bg-slate-800"
 			>
-				Contact
+				Contact ☎
 			</h2>
 			<form
 				class="flex w-full grow flex-col items-center justify-center gap-4 lg:w-1/2"
